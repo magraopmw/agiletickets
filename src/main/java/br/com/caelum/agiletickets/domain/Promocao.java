@@ -3,6 +3,8 @@ package br.com.caelum.agiletickets.domain;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
+import br.com.caelum.agiletickets.models.Sessao;
+
 public class Promocao {
 	private Long id;
 
@@ -44,6 +46,11 @@ public class Promocao {
 
 	public void setSempre(boolean sempre) {
 		this.sempre = sempre;
+	}
+
+	public boolean dentroDoIntervalo(Sessao s) {
+		return s.getInicio().isAfter(getInicio())
+				&& s.getInicio().isBefore(getFim());
 	}
 
 }
